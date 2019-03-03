@@ -12,6 +12,7 @@ const Product = conn.define('product', {
 })
 
 Product.belongsTo(Category);
+Category.hasMany(Product);
 
 Category.createCategory = function() {
     return this.create({ name: faker.commerce.department()});
@@ -40,10 +41,9 @@ const getFakerData = (dataType, count = 5) => {
 const syncAndSeed = () => {
     return conn.sync({force: true})
     .then( async () => {
-        const [ _fakerCategories, _fakerProducts ] = [ await getFakerData('category', 2), await getFakerData('product', 1) ];
-        const [ createdCategories, createProducts ] = await Promise.all(
-            _fakerCategories.map(category => Category.create({ name: category })),
-            _fakerProducts.map(product => Product.create({ name: product }))
+        const fakerCategories = await getFakerData('category', 2);
+        const createdCategories = await Promise.all(
+            fakerCategories.map(category => Category.create({ name: category }))
         )
     })
 }
