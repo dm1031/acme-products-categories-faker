@@ -8,7 +8,7 @@ const ProductList = ({ products, destroyProduct }) => {
                     return (
                         <li key={product.id}>
                             {product.name}
-                                <button onClick={() => destroyProduct(product.id)}>-</button>
+                                    <button class="btn btn-danger" onClick={() => destroyProduct(product.id)}>-</button>
                         </li>
                         )
                     }

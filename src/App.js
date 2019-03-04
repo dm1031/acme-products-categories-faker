@@ -71,7 +71,7 @@ class App extends Component{
         return (
             <div>
                 <h1>Dan's Acme Categories and Products by faker</h1>
-                <button onClick={ createCategory }>Create Category</button>
+                <button class ="btn btn-primary" onClick={ createCategory }>Create Category</button>
                 <span> <List categories={categories} products={products} createProduct={createProduct} destroyCategory={destroyCategory} destroyProduct={destroyProduct} /> </span>
             </div>
         );

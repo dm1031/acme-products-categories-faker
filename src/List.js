@@ -17,13 +17,11 @@ const List = ({ categories, products, createProduct, destroyCategory, destroyPro
             {
                 categories.map( ({ id, name }) =>
                     (
-                    <li key={id}>
+                    <li class="panel panel-body" key={id}>
                         {name}
                             <ProductList products={getProducts(id)} destroyProduct={destroyProduct} />
-                                <div>
-                                    <button onClick={() => createProduct(id)}>+</button>
-                                    <button onClick={() => destroyCategory(id)}>-</button>
-                                </div>
+                                    <button class="btn btn-primary" onClick={() => createProduct(id)}>+</button>
+                                    <button class="btn btn-danger" onClick={() => destroyCategory(id)}>-</button>
                     </li>
                     )
                 )
