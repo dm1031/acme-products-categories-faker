@@ -2,13 +2,17 @@ import React from 'react';
 
 const ProductList = ({ products, destroyProduct }) => {
     return (
-        <ul>
+        <ul className="list-group">
             {
                 products.map( (product) => {
                     return (
-                        <li key={product.id}>
+                        <li className="list-group-item" key={product.id}>
                             {product.name}
-                                    <button class="btn btn-danger" onClick={() => destroyProduct(product.id)}>-</button>
+                                <div className="clearfix">
+                                    <span className="float-right">
+                                        <button class="mb-4 btn btn-danger" onClick={() => destroyProduct(product.id)}>-</button>
+                                    </span>
+                                </div>
                         </li>
                         )
                     }

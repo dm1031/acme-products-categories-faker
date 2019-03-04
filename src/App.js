@@ -68,11 +68,22 @@ class App extends Component{
     render(){
         const { categories, products } = this.state;
         const { createCategory, createProduct, destroyCategory, destroyProduct } = this;
+        
         return (
-            <div>
-                <h1>Dan's Acme Categories and Products by faker</h1>
-                <button class ="btn btn-primary" onClick={ createCategory }>Create Category</button>
-                <span> <List categories={categories} products={products} createProduct={createProduct} destroyCategory={destroyCategory} destroyProduct={destroyProduct} /> </span>
+            <div className="container">
+                <h2>Acme Categories and Products <i>by Dan</i></h2>
+                    <button class ="btn btn-primary" onClick={ createCategory }>Create Category</button>
+                        <div className="pt-2">
+                            <span> 
+                                <List
+                                    categories={categories}
+                                    products={products}
+                                    createProduct={createProduct}
+                                    destroyCategory={destroyCategory}
+                                    destroyProduct={destroyProduct}
+                                />
+                            </span>
+                        </div>
             </div>
         );
     }
