@@ -13,14 +13,14 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 
 app.get('/api/categories', async (req, res, next) => {
 
-    const _categories = await Category.findAll({
-        include: [
-            {
-                model: Product
-            }
-        ]
-    })
-    res.send(_categories);
+    const _categories = await Category.findAll()
+    const _products = await Product.findAll()
+    const data = {
+        categories: _categories,
+        products: _products
+    }
+
+    res.send(data);
     next();
 })
 
@@ -34,6 +34,18 @@ app.post('/api/categories/:id/products', async (req, res, next) => {
     const childProduct = await parentCategory.createProduct();
     res.send(childProduct);
 })
+
+app.delete('/api/categories/:id', async (req, res, next) => {
+    await Product.destroy({ where: { categoryId: req.params.id }});
+    await Category.destroy({ where: { id: req.params.id }});
+    res.sendStatus(204);
+})
+
+app.delete('/api/products/:id', async (req, res, next) => {
+    await Product.destroy({ where: { id: req.params.id }});
+    res.sendStatus(204);
+})
+
 
 const PORT = process.env.port || 3000;
 
