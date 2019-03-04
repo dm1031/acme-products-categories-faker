@@ -46,9 +46,4 @@ app.delete('/api/products/:id', async (req, res, next) => {
     res.sendStatus(204);
 })
 
-
-const PORT = process.env.port;
-
-app.listen(PORT, () => {
-    console.log(`Listening on ${PORT}`);
-});
+app.listen(process.env.PORT);
