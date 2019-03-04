@@ -4,6 +4,7 @@
   "description": "",
   "main": "db.js",
   "scripts": {
+    "start": "node server.js",
     "start:dev": "./node_modules/webpack/bin/webpack.js --watch --mode=development & DATABASE_URL=postgres://localhost/acme_products_categories_db nodemon server.js --ignore src/ --ignore dist/"
   },
   "babel": {
