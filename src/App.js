@@ -7,12 +7,14 @@ class App extends Component{
         super()
         this.state = {
             categories: [],
-            products: []
+            products: [],
+            total: 0
         };
         this.createCategory = this.createCategory.bind(this);
         this.createProduct = this.createProduct.bind(this);
         this.destroyCategory = this.destroyCategory.bind(this);
         this.destroyProduct = this.destroyProduct.bind(this);
+        this.updateCart = this.updateCart.bind(this);
     }
 
     createCategory() {
@@ -59,6 +61,12 @@ class App extends Component{
         })
     }
 
+    updateCart(price) {
+        let total = this.state.total;
+        total += parseInt(price)
+        this.setState({ total });
+    }
+
     componentDidMount() {
         axios.get('/api/categories')
         .then( response => response.data)
@@ -66,24 +74,28 @@ class App extends Component{
     }
 
     render(){
-        const { categories, products } = this.state;
-        const { createCategory, createProduct, destroyCategory, destroyProduct } = this;
-        
-        return (
+        const { categories, products, total } = this.state;
+        const { createCategory, createProduct, destroyCategory, destroyProduct, updateCart } = this;
+
+       return (
             <div className="container">
                 <h2>Acme Categories and Products <i>by Dan</i></h2>
-                    <button class ="btn btn-primary" onClick={ createCategory }>Create Category</button>
-                        <div className="pt-2">
-                            <span> 
-                                <List
-                                    categories={categories}
-                                    products={products}
-                                    createProduct={createProduct}
-                                    destroyCategory={destroyCategory}
-                                    destroyProduct={destroyProduct}
-                                />
-                            </span>
-                        </div>
+                    <div className="clearfix">
+                        <div className="float-right">Your current total is ${total}</div>
+                        <button class ="btn btn-primary" onClick={ createCategory }>Create Category</button>
+                            <div className="pt-2">
+                                <span>
+                                    <List
+                                        categories={categories}
+                                        products={products}
+                                        createProduct={createProduct}
+                                        destroyCategory={destroyCategory}
+                                        destroyProduct={destroyProduct}
+                                        updateCart={updateCart}
+                                    />
+                                </span>
+                            </div>
+                    </div>
             </div>
         );
     }

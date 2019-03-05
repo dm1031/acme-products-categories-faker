@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductList = ({ products, destroyProduct }) => {
+const ProductList = ({ products, destroyProduct, updateCart }) => {
     return (
         <ul className="list-group">
             {
@@ -10,6 +10,7 @@ const ProductList = ({ products, destroyProduct }) => {
                             {product.name}
                                 <div className="clearfix">
                                     <span className="float-right">
+                                        <button class="mb-4 btn btn-success" onClick={() => updateCart(product.price)}>Buy</button>
                                         <button class="mb-4 btn btn-danger" onClick={() => destroyProduct(product.id)}>-</button>
                                     </span>
                                 </div>

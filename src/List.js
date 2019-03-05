@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductList from './ProductList'
 
-const List = ({ categories, products, createProduct, destroyCategory, destroyProduct }) => {
+const List = ({ categories, products, createProduct, destroyCategory, destroyProduct, updateCart }) => {
 
     const getProducts = (id) => {
         return products.reduce( (acc, product) => {
@@ -29,6 +29,7 @@ const List = ({ categories, products, createProduct, destroyCategory, destroyPro
                         <ProductList
                             products={getProducts(id)}
                             destroyProduct={destroyProduct}
+                            updateCart={updateCart}
                         />
                         
                         </li>

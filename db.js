@@ -8,7 +8,8 @@ const Category = conn.define('category', {
 })
 
 const Product = conn.define('product', {
-    name: Sequelize.STRING
+    name: Sequelize.STRING,
+    price: Sequelize.DECIMAL(10, 2)
 })
 
 Product.belongsTo(Category);
@@ -19,7 +20,11 @@ Category.createCategory = function() {
 }
 
 Category.prototype.createProduct = function() {
-    return Product.create({ name: faker.commerce.productName(), categoryId: this.id});
+    return Product.create({
+        name: faker.commerce.productName(),
+        price: Math.floor(Math.random() * 10) + Math.round(Math.random() * 100) / 100,
+        categoryId: this.id
+    });
 }
 
 

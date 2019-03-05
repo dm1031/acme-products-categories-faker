@@ -46,4 +46,4 @@ app.delete('/api/products/:id', async (req, res, next) => {
     res.sendStatus(204);
 })
 
-app.listen(process.env.PORT);
+app.listen(3000);
